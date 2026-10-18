@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#07142d" />
+  <title>CricFAN — International Cricket</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="CricFAN home"><span class="brand-mark">C</span><span>Cric<span>FAN</span></span></a>
+    <div class="header-actions">
+      <button id="refreshBtn" class="icon-btn" title="Refresh scores" aria-label="Refresh scores">↻</button>
+      <button id="addMatchBtn" class="primary-btn">＋ Add match</button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="live-dot"></span> THE GAME, LIVE</p>
+        <h1>Every run.<br><span>Every moment.</span></h1>
+        <p class="hero-sub">International cricket scores, match results and scorecards in one place.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="ball"></div><div class="hero-stumps"><i></i><i></i><i></i></div></div>
+    </section>
+
+    <div class="search-row">
+      <label class="searchbox"><span>⌕</span><input id="searchInput" type="search" placeholder="Search teams, series or matches…" autocomplete="off" /></label>
+      <button id="pinnedFilter" class="filter-btn" aria-pressed="false">♧ Pinned <span id="pinCount">0</span></button>
+    </div>
+
+    <nav class="category-tabs" aria-label="Competition categories">
+      <button class="category-tab active" data-category="INTERNATIONAL">INTERNATIONAL</button>
+      <button class="category-tab" data-category="TOURNAMENT">TOURNAMENT</button>
+      <button class="category-tab" data-category="NATIONAL">NATIONAL</button>
+    </nav>
+
+    <section class="section-block">
+      <div class="section-heading"><div><p class="eyebrow">FOLLOW THE ACTION</p><h2 id="liveHeading">Live & upcoming</h2></div><span class="section-note"><span class="live-dot"></span> Auto refresh every 1 sec</span></div>
+      <div id="liveMatches" class="match-grid"></div>
+    </section>
+
+    <section class="section-block results-block">
+      <div class="section-heading"><div><p class="eyebrow">CATCH UP</p><h2>Yesterday’s results</h2></div><span class="date-label" id="yesterdayLabel"></span></div>
+      <div id="resultsMatches" class="match-grid"></div>
+    </section>
+
+    <footer><span class="brand-mini">Cric<span>FAN</span></span><span>Scores for fans. Built for the game.</span><button id="manualHelp" class="text-btn">Scoring help</button></footer>
+  </main>
+
+  <dialog id="scoreDialog" class="app-dialog">
+    <form method="dialog" class="dialog-top"><div><p class="eyebrow">MATCH CENTRE</p><h2 id="dialogTitle">Match scorecard</h2></div><button class="close-btn" value="cancel" aria-label="Close">×</button></form>
+    <div id="dialogBody"></div>
+  </dialog>
+
+  <dialog id="addDialog" class="app-dialog small-dialog">
+    <form id="addMatchForm">
+      <div class="dialog-top"><div><p class="eyebrow">MANUAL SCOREKEEPING</p><h2>Add a match</h2></div><button type="button" class="close-btn" id="closeAdd" aria-label="Close">×</button></div>
+      <label>Competition type<select id="newCategory"><option>INTERNATIONAL</option><option>TOURNAMENT</option><option>NATIONAL</option></select></label>
+      <label>Team A<input id="teamA" placeholder="e.g. India" required maxlength="28" /></label>
+      <label>Team B<input id="teamB" placeholder="e.g. Australia" required maxlength="28" /></label>
+      <label>Format<select id="newFormat"><option>T20I</option><option>ODI</option><option>Test</option></select></label>
+      <label>Match status<select id="newStatus"><option value="LIVE">Live</option><option value="UPCOMING">Upcoming</option><option value="RESULT">Result</option></select></label>
+      <button class="primary-btn full-btn" type="submit">Create match</button>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="index.js"></script>
+</body>
+</html>
